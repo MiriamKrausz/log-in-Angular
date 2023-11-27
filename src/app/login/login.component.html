@@ -1,0 +1,68 @@
+ <h1>Well come to our log in page</h1>
+<form class="row g-3 needs-validation was-validated" #form="ngForm">
+    <div class="col-md-4">
+        <label for="validationServer01" class="form-label">First name</label>
+        <input type="text" class="form-control is-valid" [(ngModel)]="this.firstName"
+             placeholder="Sara" name="firstName" #usersFirstNameModel="ngModel"
+            minlength="3" required>
+        <ng-container *ngIf="usersFirstNameModel.errors">
+            <p *ngIf="usersFirstNameModel.errors['minlength']" class="invalid-feedback">you must write at least 3 chars
+            </p>
+            <p *ngIf="usersFirstNameModel.errors['required']" class="invalid-feedback">you must write your first name
+            </p>
+        </ng-container>
+    </div>
+    <div class="col-md-4">
+        <label for="validationServer02" class="form-label">Last name</label>
+        <input type="text" class="form-control is-valid" [(ngModel)]="this.lastName"
+        placeholder="Cohen" name="lasttName" #usersLastNameModel="ngModel"
+        minlength="6" required>
+        <ng-container *ngIf="usersLastNameModel.errors">
+            <p *ngIf="usersLastNameModel.errors['minlength']" class="invalid-feedback">you must write at least 6 chars
+            </p>
+            <p *ngIf="usersLastNameModel.errors['required']" class="invalid-feedback">you must write your last name</p>
+        </ng-container>
+    </div>
+    <div class="col-md-6">
+        <label for="validationServer03" class="form-label">city</label>
+        <select class="form-select is-invalid" aria-describedby="validationServer04Feedback"
+        [(ngModel)]="this.city" name="city" #usersCityModel="ngModel"
+        required   >
+            <option selected value="">Bnei brak</option>
+            <option>Netanyah</option>
+            <option>Haifah</option>
+            <option>Ashdod</option>
+            <option>Ramat Gan</option>
+            <option>Afulah</option>
+            <option>Netivot</option>
+        </select>
+        <ng-container *ngIf="usersCityModel.errors">
+            <p *ngIf="usersCityModel.errors['required']" class="invalid-feedback">you must choose a city</p>
+        </ng-container>
+    </div>
+    <div class="col-md-3">
+        <label for="validationServer05" class="form-label">Pass Word</label>
+        <input type="password" class="form-control is-invalid" 
+        [(ngModel)]="this.passWord"
+              name="passWord" #usersPassWordModel="ngModel"
+            minlength="8" required>
+        <ng-container *ngIf="usersPassWordModel.errors">
+            <p *ngIf="usersPassWordModel.errors['minlength']" class="invalid-feedback">you must enter at least 8 numbers
+            </p>
+            <p *ngIf="usersPassWordModel.errors['required']" class="invalid-feedback">you must enter a pass word</p>
+        </ng-container>
+    </div>
+    <div class="col-12">
+        <div class="form-check">
+            <input class="form-check-input is-invalid" type="checkbox" 
+            [(ngModel)]="this.cheked" name="checked" #userChecked="ngModel"
+            required >
+            <ng-container *ngIf="userChecked.errors">
+                <p *ngIf="userChecked.errors['required']" class="invalid-feedback">Agree to terms and conditions</p>
+            </ng-container>
+        </div>
+    </div>
+    <div class="col-12">
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid" (click)="logIn()">Submit form</button>
+    </div>
+</form>
